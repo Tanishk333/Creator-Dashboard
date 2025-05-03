@@ -14,7 +14,7 @@ export default function Feed() {
 
   const fetchPosts = async () => {
     try {
-      const response = await axios.get('/api/feed/posts')
+      const response = await axios.get('https://creator-dashboard-ms4w.onrender.com/api/feed/posts')
       setPosts(response.data)
     } catch (err) {
       setError('Failed to load feed')
@@ -25,7 +25,7 @@ export default function Feed() {
 
   const handleSavePost = async (postId) => {
     try {
-      const response = await axios.post(`/api/feed/posts/${postId}/save`);
+      const response = await axios.post(`https://creator-dashboard-ms4w.onrender.com/api/feed/posts/${postId}/save`)
       const updatedPosts = posts.map(post => {
         if (post._id === postId) {
           return { ...post, saved: response.data.saved };
@@ -65,7 +65,7 @@ export default function Feed() {
     if (!reason) return;
 
     try {
-      await axios.post(`/api/feed/posts/${postId}/report`, { reason });
+      await axios.post(`https://creator-dashboard-ms4w.onrender.com/api/feed/posts/${postId}/report`, { reason })
       alert('Post reported successfully');
       if (window.Notification && Notification.permission === "granted") {
         new Notification("Post reported successfully");
