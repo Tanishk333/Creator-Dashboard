@@ -48,8 +48,8 @@ A full-stack web application for content creators to manage their profile, earn 
 - The backend automatically creates initial credits for new users and simulates LinkedIn posts in the feed.
 
 ## Deployment
-- **Frontend:** Deploy to [Vercel](https://vercel.com/)
-- **Backend:** Deploy to [Render](https://render.com/) or [Railway](https://railway.app/)
+- **Frontend:** Deploy to [Netlify](creatordashboar.netlify.app)
+- **Backend:** Deploy to [Render](https://render.com/)
 - **Database:** Use MongoDB Atlas Free Tier
 
 ## Folder Structure
