@@ -21,9 +21,9 @@ export default function AdminDashboard() {
   const fetchDashboardData = async () => {
     try {
       const [usersResponse, reportsResponse, statsResponse] = await Promise.all([
-        axios.get('/api/admin/users'),
-        axios.get('/api/admin/reports'),
-        axios.get('/api/admin/stats')
+        axios.get('https://creator-dashboard-ms4w.onrender.com/api/admin/users'),
+        axios.get('https://creator-dashboard-ms4w.onrender.com/api/admin/reports'),
+        axios.get('https://creator-dashboard-ms4w.onrender.com/api/admin/stats')
       ])
       setUsers(usersResponse.data)
       setReports(reportsResponse.data)
@@ -40,7 +40,7 @@ export default function AdminDashboard() {
     if (!selectedUser || !creditAmount) return
 
     try {
-      const response = await axios.post(`/api/admin/users/${selectedUser}/credits`, {
+      const response = await axios.post(`https://creator-dashboard-ms4w.onrender.com/api/admin/users/${selectedUser}/credits`, {
         amount: parseInt(creditAmount)
       })
       // Update user credits in state
@@ -63,7 +63,7 @@ export default function AdminDashboard() {
 
   const handleResolveReport = async (reportId) => {
     try {
-      await axios.post(`/api/admin/reports/${reportId}/resolve`)
+      await axios.post(`https://creator-dashboard-ms4w.onrender.com/api/admin/reports/${reportId}/resolve`)
       // Update reports state immediately
       setReports(reports.filter(report => report.reportId !== reportId))
     } catch (err) {
