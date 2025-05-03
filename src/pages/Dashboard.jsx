@@ -15,7 +15,7 @@ export default function Dashboard() {
   useEffect(() => {
     const fetchDashboardData = async () => {
       try {
-        const response = await axios.get('/api/dashboard/stats')
+        const response = await axios.get('https://creator-dashboard-ms4w.onrender.com/api/dashboard/stats')
         setStats(response.data)
       } catch (err) {
         setError('Failed to load dashboard data')
