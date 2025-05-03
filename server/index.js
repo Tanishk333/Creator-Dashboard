@@ -3,6 +3,8 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 import authRoutes from './routes/auth.js';
 import dashboardRoutes from './routes/dashboard.js';
 import feedRoutes from './routes/feed.js';
@@ -38,6 +40,8 @@ app.use('/api/admin', authenticateToken, adminRoutes);
 
 // Serve static files in production
 if (process.env.NODE_ENV === 'production') {
+  const __filename = fileURLToPath(import.meta.url);
+  const __dirname = dirname(__filename);
   app.use(express.static(path.join(__dirname, '../dist')));
   
   app.get('*', (req, res) => {
