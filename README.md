@@ -1,49 +1,75 @@
-# Deployment: Netlify (Frontend) & Render (Backend)
+# Creator Dashboard
 
-## Hosting the Frontend (React) on Netlify
+A full-stack web application for content creators to manage their profile, earn credits, and interact with a personalized content feed.
 
-1. **Build your React app:**
+## Features
+- **User Authentication:** JWT-based login/register, role-based access (User/Admin)
+- **Credit System:** Earn credits for daily login, profile completion, and feed interaction; admin can adjust credits
+- **Feed Aggregator:** Fetches posts from Reddit and simulated LinkedIn data
+- **User Dashboard:** View credits, saved content, recent activity
+- **Admin Dashboard:** User analytics, credit management, feed reports
+- **Modern UI:** Built with React.js and Tailwind CSS
+
+## Tech Stack
+- **Frontend:** React.js, Tailwind CSS, Vite
+- **Backend:** Node.js, Express.js
+- **Database:** MongoDB Atlas (Mongoose)
+- **Auth:** JWT
+
+## Getting Started
+
+### Prerequisites
+- Node.js (v16+)
+- npm
+- MongoDB Atlas account (free tier)
+
+### Backend Setup
+1. From the project root, install dependencies:
    ```sh
-   npm run build
+   npm install
    ```
-2. **Sign up / Log in to Netlify:**
-   - Go to https://netlify.com and log in or create an account.
-3. **Deploy your site:**
-   - Option 1: Connect your GitHub/GitLab/Bitbucket repo and select your project.
-   - Option 2: Drag and drop the `dist` or `build` folder (from the previous step) into the Netlify dashboard.
-4. **Set build settings:**
-   - Build command: `npm run build`
-   - Publish directory: `dist` (or `build` if using Create React App)
-5. **Deploy:**
-   - Netlify will build and deploy your site. You’ll get a live URL.
-6. **(Optional) Set environment variables:**
-   - In Site Settings > Environment Variables, add any needed variables (e.g., VITE_API_URL).
+2. Create a `.env` file in the root with:
+   ```env
+   MONGODB_URI=your_mongodb_atlas_connection_string
+   JWT_SECRET=your_jwt_secret
+   ```
+3. Start the backend server from the root:
+   ```sh
+   npm run server
+   ```
 
-## Hosting the Backend (Node.js/Express) on Render
+### Frontend Setup
+1. From the project root, start the frontend dev server:
+   ```sh
+   npm run dev
+   ```
 
-1. **Push your backend code to a Git repository** (GitHub, GitLab, Bitbucket).
-2. **Sign up / Log in to Render:**
-   - Go to https://render.com and log in or create an account.
-3. **Create a new Web Service:**
-   - Click "New +" > "Web Service".
-   - Connect your repository and select the backend folder.
-4. **Configure service:**
-   - Environment: Node
-   - Build Command: `npm install`
-   - Start Command: `node index.js` (or your entry point)
-   - Set environment variables (e.g., `MONGODB_URI`, secrets) in the Render dashboard.
-5. **Deploy:**
-   - Render will build and deploy your backend. You’ll get a public API URL.
+### Seed Data
+- The backend automatically creates initial credits for new users and simulates LinkedIn posts in the feed.
 
-## Final Steps
+## Deployment
+- **Frontend:** Deploy to [Vercel](https://vercel.com/)
+- **Backend:** Deploy to [Render](https://render.com/) or [Railway](https://railway.app/)
+- **Database:** Use MongoDB Atlas Free Tier
 
-- **Update frontend API URLs:**
-  - In your frontend code or environment variables, set the API base URL to your Render backend URL.
-- **CORS:**
-  - In your backend, ensure CORS middleware allows requests from your Netlify domain (e.g., `https://your-site.netlify.app`).
-- **Secrets:**
-  - Never commit secrets. Use Render’s environment variable settings for production secrets.
+## Folder Structure
+```
+Creator dashboard/
+├── server/
+│   ├── index.js
+│   ├── models/
+│   ├── routes/
+│   └── middleware/
+├── src/
+│   ├── pages/
+│   ├── components/
+│   ├── contexts/
+│   └── main.jsx
+├── tailwind.config.js
+├── vite.config.js
+├── package.json
+└── README.md
+```
 
-## References
-- [Netlify Docs](https://docs.netlify.com/)
-- [Render Docs](https://render.com/docs/deploy-node-express-app)
+## License
+MIT
