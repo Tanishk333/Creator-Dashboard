@@ -41,7 +41,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
-      const response = await axios.post('/api/auth/login', { email, password })
+      const response = await axios.post('https://creator-dashboard-ms4w.onrender.com/api/auth/login', { email, password })
       const { token, user: userData } = response.data
       
       localStorage.setItem('token', token)
@@ -60,7 +60,7 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (userData) => {
     try {
-      const response = await axios.post('/api/auth/register', userData)
+      const response = await axios.post('https://creator-dashboard-ms4w.onrender.com/api/auth/register', userData)
       const { token, user: newUser } = response.data
       
       localStorage.setItem('token', token)
